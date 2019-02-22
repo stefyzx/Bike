@@ -1,6 +1,8 @@
 package com.globalmatics.bike.controllers;
 
 import com.globalmatics.bike.models.Bike;
+import com.globalmatics.bike.repositories.BikeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/bikes")
 public class BikesController {
+
+    @Autowired
+    private BikeRepository bikeRepository;
+
     @GetMapping
     public List<Bike> list() {
-        List<Bike> bikes = new ArrayList<>();
-        return bikes;
+        return bikeRepository.findAll();
     }
 
     @PostMapping
